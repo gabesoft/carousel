@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="carousel.js"></script>
+    <link href="carousel.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <div class="carousel-container">
+      <div id="carousel" class="carousel" style="width: 50%; border: 1px solid salmon">
+        <img alt="" src="http://image.slidesharecdn.com/lm1bzwfzqt6kkorwcfo4-signature-de61966c0cc9f9e81f7e390d21e637089d47cfd9b8416d155bd516ce1321adb5-poli-151104202340-lva1-app6892/95/why-hong-kong-expanding-your-business-to-asia-11-638.jpg?cb=1446829476"/> 
+        <img alt="" src="http://image.slidesharecdn.com/cybersecurityawareness-151104180756-lva1-app6892/95/5-ways-to-protect-your-mobile-security-6-638.jpg?cb=1446743168">
+        <img alt="" src="http://image.slidesharecdn.com/cybersecurityawareness-151104180756-lva1-app6892/95/5-ways-to-protect-your-mobile-security-10-638.jpg?cb=1446743168">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/_VPvKl6ezyc" frameborder="0" allowfullscreen></iframe>
+        <img alt="" src="http://image.slidesharecdn.com/cybersecurityawareness-151104180756-lva1-app6892/95/5-ways-to-protect-your-mobile-security-57-638.jpg?cb=1446743168">
+        <img alt="" src="http://image.slidesharecdn.com/ondemand-modulardatacenter-151103140727-lva1-app6892/95/modular-data-centers-opportunities-and-trends-impacting-the-market-12-638.jpg?cb=1446571489">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/vvLBXO94EfA" frameborder="0" allowfullscreen></iframe>
+        <img alt="" src="http://image.slidesharecdn.com/iot-5-things-151028200156-lva1-app6892/95/5-technologies-to-watch-over-the-next-five-years-2-638.jpg?cb=1446075686">
+      </div>
+    </div>
+
+    <div style="margin:20px 0 0 0" class="action-buttons">
+      <button style="padding:10px 20px; border: 1px solid grey" class="prev">Prev</button>
+      <button style="padding:10px 20px; border: 1px solid grey" class="next">Next</button>
+    </div>
+
+    <script>
+     $(document).ready(function(){
+       var carousel = new Carousel('#carousel', {
+         slideWidth: 638,
+         slideHeight: 479
+       });
+
+       carousel.init();
+       carousel.slide(0);
+
+       $('.next').click(carousel.next.bind(carousel));
+       $('.prev').click(carousel.prev.bind(carousel));
+     });
+    </script>
+  </body>
+</html>
