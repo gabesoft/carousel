@@ -9,8 +9,8 @@
     <link href="carousel.css" rel="stylesheet"/>
   </head>
   <body>
-    <div class="carousel-container">
-      <div id="carousel" class="carousel" style="width: 50%; border: 1px solid salmon">
+    <div class="carousel-container" style="text-align:center">
+      <div id="carousel" class="carousel" style="width: 70%; border: 1px solid salmon">
         <img alt="" src="http://image.slidesharecdn.com/lm1bzwfzqt6kkorwcfo4-signature-de61966c0cc9f9e81f7e390d21e637089d47cfd9b8416d155bd516ce1321adb5-poli-151104202340-lva1-app6892/95/why-hong-kong-expanding-your-business-to-asia-11-638.jpg?cb=1446829476"/> 
         <img alt="" src="http://image.slidesharecdn.com/cybersecurityawareness-151104180756-lva1-app6892/95/5-ways-to-protect-your-mobile-security-6-638.jpg?cb=1446743168">
         <img alt="" src="http://image.slidesharecdn.com/cybersecurityawareness-151104180756-lva1-app6892/95/5-ways-to-protect-your-mobile-security-10-638.jpg?cb=1446743168">
@@ -25,6 +25,7 @@
     <div style="margin:20px 0 0 0" class="action-buttons">
       <button style="padding:10px 20px; border: 1px solid grey" class="prev">Prev</button>
       <button style="padding:10px 20px; border: 1px solid grey" class="next">Next</button>
+      <button style="padding:10px 20px; border: 1px solid grey" class="fullscreen">Full Screen</button>
     </div>
 
     <script>
@@ -39,6 +40,7 @@
 
        $('.next').click(carousel.next.bind(carousel));
        $('.prev').click(carousel.prev.bind(carousel));
+       $('.fullscreen').click(carousel.fullscreen.bind(carousel));
      });
     </script>
   </body>

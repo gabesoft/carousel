@@ -42,8 +42,6 @@ Carousel.prototype.setDimensions = function() {
   this.slideWidth = this.$el.width();
   this.slideHeight = Math.ceil(this.slideRatio * this.slideWidth);
 
-  console.log(this.slideRatio, this.slideWidth, this.slideHeight);
-
   this.$slides.width(this.slideWidth);
   this.$track.height(this.slideHeight);
   this.$track.width(Math.ceil(this.slideCount * this.slideWidth));
@@ -75,6 +73,36 @@ Carousel.prototype.resize = function() {
     this.$track.css('transition', '');
   }.bind(this), 0);
 };
+
+// TODO: fullscreen should be set on a parent element
+Carousel.prototype.fullscreen = function() {
+  var el = this.$el.get(0);
+
+  if (this.isFullScreen) {
+    if (el.exitFullscreen) {
+      el.exitFullscreen();
+    } else if (el.msCancelFullscreen) {
+      el.msCancelFullscreen();
+    } else if (el.mozCancelFullScreen) {
+      el.mozCancelFullScreen();
+    } else if (el.webkitExitFullscreen) {
+      el.webkitExitFullscreen();
+    }
+  } else {
+    if (el.requestFullscreen) {
+      el.requestFullscreen();
+    } else if (el.msRequestFullscreen) {
+      el.msRequestFullscreen();
+    } else if (el.mozRequestFullScreen) {
+      el.mozRequestFullScreen();
+    } else if (el.webkitRequestFullscreen) {
+      el.webkitRequestFullscreen();
+    }
+  }
+
+  this.isFullScreen = !this.isFullScreen;
+};
+
 
 Carousel.prototype.attachEvents = function() {
   $(window).on('resize', this.resize.bind(this));
