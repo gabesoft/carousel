@@ -17,8 +17,12 @@
         <iframe width="560" height="315" src="https://www.youtube.com/embed/_VPvKl6ezyc" frameborder="0" allowfullscreen></iframe>
         <img alt="" src="http://image.slidesharecdn.com/cybersecurityawareness-151104180756-lva1-app6892/95/5-ways-to-protect-your-mobile-security-57-638.jpg?cb=1446743168">
         <img alt="" src="http://image.slidesharecdn.com/ondemand-modulardatacenter-151103140727-lva1-app6892/95/modular-data-centers-opportunities-and-trends-impacting-the-market-12-638.jpg?cb=1446571489">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/vvLBXO94EfA" frameborder="0" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/m5_AKjDdqaU" frameborder="0" allowfullscreen></iframe>
         <img alt="" src="http://image.slidesharecdn.com/iot-5-things-151028200156-lva1-app6892/95/5-technologies-to-watch-over-the-next-five-years-2-638.jpg?cb=1446075686">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/LCGMS7GXFZ4" frameborder="0" allowfullscreen></iframe>
+        <div style="background-color:grey">
+          <h3>Last slide ...</h3>
+        </div>
       </div>
     </div>
 
@@ -26,6 +30,9 @@
       <button style="padding:10px 20px; border: 1px solid grey" class="prev">Prev</button>
       <button style="padding:10px 20px; border: 1px solid grey" class="next">Next</button>
       <button style="padding:10px 20px; border: 1px solid grey" class="fullscreen">Full Screen</button>
+
+      <button style="padding:10px 20px; border: 1px solid grey" class="goto">Go To</button>
+      <input id="slide-index" name="" type="text" value="0"/>
     </div>
 
     <script>
@@ -41,6 +48,10 @@
        $('.next').click(carousel.next.bind(carousel));
        $('.prev').click(carousel.prev.bind(carousel));
        $('.fullscreen').click(carousel.fullscreen.bind(carousel));
+       $('.goto').click(function() {
+         var pos = parseInt($('#slide-index').val(), 10);
+         carousel.slide(pos);
+       });
      });
     </script>
   </body>

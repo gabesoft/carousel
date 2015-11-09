@@ -76,7 +76,7 @@ Carousel.prototype.resize = function() {
 
 // TODO: fullscreen should be set on a parent element
 Carousel.prototype.fullscreen = function() {
-  var el = this.$el.get(0);
+  var el = this.$el[0];
 
   if (this.isFullScreen) {
     if (el.exitFullscreen) {
