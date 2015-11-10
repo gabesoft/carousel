@@ -31,6 +31,7 @@ Carousel.prototype.build = function() {
   this.$list = this.$track
     .wrap('<div aria-live="polite" class="carousel-list"/>')
     .parent();
+  this.$list.addClass('draggable');
 
   // this.$track.css('opacity', 0);
 };
@@ -106,6 +107,52 @@ Carousel.prototype.fullscreen = function() {
 
 Carousel.prototype.attachEvents = function() {
   $(window).on('resize', this.resize.bind(this));
+
+  this.hammer = new Hammer(this.$track[0]);
+
+  this.hammer.on('panstart', function(e) {
+    console.log('panstart panright', e.deltaX);
+    this.$list.addClass('dragging');
+
+    var offset = this.currentSlide * this.slideWidth - e.deltaX;
+    console.log('offset', offset);
+    this.$track.css('transform', 'translate3d(' + (-1 * offset) + 'px, 0, 0)');
+  }.bind(this));
+
+  this.hammer.on('panmove', function(e) {
+    var offset = this.currentSlide * this.slideWidth - e.deltaX;
+    console.log('offset', offset);
+    this.$track.css('transform', 'translate3d(' + (-1 * offset) + 'px, 0, 0)');
+  }.bind(this));
+
+  this.hammer.on('panend', function(e) {
+    e.preventDefault();
+    console.log('panend', e.deltaX, this.slideWidth);
+
+    if (Math.abs(e.deltaX) >= this.slideWidth / 2) {
+      if (e.deltaX > 0) {
+        this.prev();
+      } else {
+        this.next();
+      }
+    } else {
+      this.slide(this.currentSlide);
+    }
+
+    this.$list.removeClass('dragging');
+  }.bind(this));
+
+  this.$list.live('mousedown', function(e) {
+    this.$list.addClass('dragging');
+  }.bind(this));
+
+  this.$list.live('mouseup', function(e) {
+    this.$list.removeClass('dragging');
+  }.bind(this));
+
+  this.$track.on('dragstart', function(e) {
+    e.preventDefault();
+  }.bind(this));
 };
 
 

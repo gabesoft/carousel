@@ -6,12 +6,13 @@
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="carousel.js"></script>
+    <script src="hammer.js"></script>
     <link href="carousel.css" rel="stylesheet"/>
   </head>
   <body>
     <div class="carousel-container" style="text-align:center">
       <div id="carousel" class="carousel" style="width: 70%; border: 1px solid salmon">
-        <img alt="" src="http://image.slidesharecdn.com/lm1bzwfzqt6kkorwcfo4-signature-de61966c0cc9f9e81f7e390d21e637089d47cfd9b8416d155bd516ce1321adb5-poli-151104202340-lva1-app6892/95/why-hong-kong-expanding-your-business-to-asia-11-638.jpg?cb=1446829476"/> 
+        <img alt="" src="http://image.slidesharecdn.com/lm1bzwfzqt6kkorwcfo4-signature-de61966c0cc9f9e81f7e390d21e637089d47cfd9b8416d155bd516ce1321adb5-poli-151104202340-lva1-app6892/95/why-hong-kong-expanding-your-business-to-asia-11-638.jpg?cb=1446829476"/>
         <img alt="" src="http://image.slidesharecdn.com/cybersecurityawareness-151104180756-lva1-app6892/95/5-ways-to-protect-your-mobile-security-6-638.jpg?cb=1446743168">
         <img alt="" src="http://image.slidesharecdn.com/cybersecurityawareness-151104180756-lva1-app6892/95/5-ways-to-protect-your-mobile-security-10-638.jpg?cb=1446743168">
         <iframe width="560" height="315" src="https://www.youtube.com/embed/_VPvKl6ezyc" frameborder="0" allowfullscreen></iframe>
@@ -22,7 +23,7 @@
         <iframe width="560" height="315" src="https://www.youtube.com/embed/LCGMS7GXFZ4" frameborder="0" allowfullscreen></iframe>
         <div style="background-color:grey">
           <h3>Another slide ...</h3>
-          <a href="http://google.com">Search</a>
+          <a tabindex="-1" href="http://google.com">Search</a>
         </div>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/Xsci3B_JllU" frameborder="0" allowfullscreen></iframe>
       </div>
@@ -54,6 +55,8 @@
          var pos = parseInt($('#slide-index').val(), 10);
          carousel.slide(pos);
        });
+
+       window.carousel = carousel;
      });
     </script>
   </body>

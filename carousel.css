@@ -34,10 +34,15 @@
               {
                 outline: none;
               }
+.carousel-list.draggable
+{
+  cursor: grab;
+  cursor: -webkit-grab;
+}
 .carousel-list.dragging
 {
-  cursor: pointer;
-  cursor: hand;
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
 }
 
 .carousel-slider .carousel-track,
@@ -56,7 +61,7 @@
   top: 0;
   left: 0;
 
-  transition: transform 0.2s ease;
+  /* transition: transform 0.2s ease; */
   display: block;
 }
 .carousel-track:before,
@@ -121,4 +126,8 @@
 }
 .carousel-arrow.carousel-hidden {
   display: none;
+}
+
+iframe {
+  z-index: -1;
 }
