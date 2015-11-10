@@ -58,9 +58,18 @@ Carousel.prototype.slide = function(index) {
   this.$slides
     .removeClass('carousel-slide-active')
     .attr('tabindex', -1);
+
+  this.$slides.find('a').attr('tabindex', -1);
+  this.$slides.find('input').attr('tabindex', -1);
+  this.$slides.find('button').attr('tabindex', -1);
+
   $slide
     .addClass('carousel-slide-active')
-    .attr('tabindex', 0);
+    .removeAttr('tabindex');
+
+  $slide.find('a').removeAttr('tabindex');
+  $slide.find('input').removeAttr('tabindex');
+  $slide.find('button').removeAttr('tabindex');
 
   this.$track.css('transform', 'translate3d(-' + offset + 'px, 0, 0)');
   this.currentSlide = pos;
@@ -103,7 +112,6 @@ Carousel.prototype.fullscreen = function() {
 
   this.isFullScreen = !this.isFullScreen;
 };
-
 
 Carousel.prototype.attachEvents = function() {
   $(window).on('resize', this.resize.bind(this));
