@@ -26,7 +26,7 @@ Carousel.prototype.build = function() {
   });
 
   this.$el.addClass('carousel-slider');
-  this.$track = this.$slides.wrapAll('<div class="carousel-track"/>').parent();
+  this.$track = this.$slides.wrapAll('<ul class="carousel-track"/>').parent();
 
   this.$list = this.$track
     .wrap('<div aria-live="polite" class="carousel-list"/>')
@@ -59,19 +59,20 @@ Carousel.prototype.slide = function(index) {
     .removeClass('carousel-slide-active')
     .attr('tabindex', -1);
 
-  this.$slides.find('a').attr('tabindex', -1);
-  this.$slides.find('input').attr('tabindex', -1);
-  this.$slides.find('button').attr('tabindex', -1);
+  this.$slides.find('a, input, button, iframe').attr('tabindex', -1);
 
   $slide
     .addClass('carousel-slide-active')
     .removeAttr('tabindex');
 
-  $slide.find('a').removeAttr('tabindex');
-  $slide.find('input').removeAttr('tabindex');
-  $slide.find('button').removeAttr('tabindex');
+  $slide.find('a, input, button').removeAttr('tabindex');
+  // if ($slide.find('iframe').length > 0) {
+  //   $slide.find('iframe').resize();
+  //   $slide.find('iframe')[0].contentWindow.focus();
+  // }
 
-  this.$track.css('transform', 'translate3d(-' + offset + 'px, 0, 0)');
+  // this.$track.css('transform', 'translateX(-' + offset + 'px)');
+  this.$track.css('left', (-1 * offset));
   this.currentSlide = pos;
 };
 
@@ -116,26 +117,36 @@ Carousel.prototype.fullscreen = function() {
 Carousel.prototype.attachEvents = function() {
   $(window).on('resize', this.resize.bind(this));
 
-  this.hammer = new Hammer(this.$track[0]);
+  this.hammer = new Hammer(document.getElementById('carousel'));
 
-  this.hammer.on('panstart', function(e) {
+  this.hammer.on('panstart panright panleft', function(e) {
     console.log('panstart panright', e.deltaX);
-    this.$list.addClass('dragging');
+    // this.$list.addClass('dragging');
 
     var offset = this.currentSlide * this.slideWidth - e.deltaX;
-    console.log('offset', offset);
-    this.$track.css('transform', 'translate3d(' + (-1 * offset) + 'px, 0, 0)');
+    // console.log('offset', offset);
+
+    // this.offset = this.slideWidth * this.currentSlide;
+    // this.offsetData = this.$track.offset();
+
+    // this.$track.css('transform', 'translateX(' + (-1 * offset) + 'px)');
+    this.$track.css('left', (-1 * offset));
   }.bind(this));
 
-  this.hammer.on('panmove', function(e) {
-    var offset = this.currentSlide * this.slideWidth - e.deltaX;
-    console.log('offset', offset);
-    this.$track.css('transform', 'translate3d(' + (-1 * offset) + 'px, 0, 0)');
-  }.bind(this));
+  // this.hammer.on('panmove', function(e) {
+  //   var offset = this.currentSlide * this.slideWidth - e.deltaX;
+  //   console.log('panmove', offset);
+  //   // this.$track.css('transform', 'translateX(' + (-1 * offset) + 'px)');
+  //   this.$track.css('left', (-1 * offset));
+  // }.bind(this));
 
   this.hammer.on('panend', function(e) {
-    e.preventDefault();
+    // e.preventDefault();
     console.log('panend', e.deltaX, this.slideWidth);
+
+    // this.$track.css('transform', 'translateX(' + (-1 * this.offset) + 'px)');
+    // this.$track.css('transform', 'translateX(0px)');
+    // this.$track.offset(this.offsetData);
 
     if (Math.abs(e.deltaX) >= this.slideWidth / 2) {
       if (e.deltaX > 0) {
@@ -147,15 +158,7 @@ Carousel.prototype.attachEvents = function() {
       this.slide(this.currentSlide);
     }
 
-    this.$list.removeClass('dragging');
-  }.bind(this));
-
-  this.$list.live('mousedown', function(e) {
-    this.$list.addClass('dragging');
-  }.bind(this));
-
-  this.$list.live('mouseup', function(e) {
-    this.$list.removeClass('dragging');
+    // this.$list.removeClass('dragging');
   }.bind(this));
 
   this.$track.on('dragstart', function(e) {
